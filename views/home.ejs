@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
-    <% if (Object.keys(data1).length > 0) { %>
-        
-    <% } %>
-    <form action="/location" method="post">
-        <input type="text" name="location">
-        <input type="submit">
-    </form>
+    <% if (results.length == 0) { %>
+        <form action="/location" class="search" method="post">
+            <input type="text" name="location">
+            <button type="submit">Search</button>
+        </form>
+    <% } else { %>
+        <form action="/location" class="search" method="post">
+            <input type="text">
+            <button type="submit">Search</button>
+        </form>
+        <div class="AllContainer animate__animated animate__fadeInDown">
+            <a href="/<%= result %>">
+                <div class="firstContainer">
+                    <h3 class="location"><%= result %></h3>
+                    <h2 class="details"><%=  data.DailyForecasts.Temperature.Maximum %><br>Partly cloudy<br>Day <%=  data.DailyForecasts.Temperature.Maximum %> • Night <%=  data.DailyForecasts.Temperature.Minimum %></h2>      
+                </div>
+            </a>   
+        </div>
+     <% } %>
 </body>
 </html>
